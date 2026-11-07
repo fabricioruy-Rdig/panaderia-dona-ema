@@ -1,6 +1,6 @@
 # Panadería Doña Ema — landing page
 
-**Demo:** _(enlace de GitHub Pages, se agrega al publicar)_
+**Demo:** https://fabricioruy-rdig.github.io/panaderia-dona-ema/
 
 ![Captura de la página](img/captura.webp)
 
