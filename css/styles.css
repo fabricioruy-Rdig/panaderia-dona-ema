@@ -1,0 +1,218 @@
+/* Panadería Doña Ema — estilos */
+
+/* Tipografías guardadas en el proyecto (no dependen de Google) */
+@font-face { font-family: "Caprasimo"; src: url("../fonts/caprasimo-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Fraunces"; src: url("../fonts/fraunces-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Fraunces"; src: url("../fonts/fraunces-latin-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Fraunces"; src: url("../fonts/fraunces-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Rubik"; src: url("../fonts/rubik-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Rubik"; src: url("../fonts/rubik-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Rubik"; src: url("../fonts/rubik-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+:root {
+  --corteza: #6B3A1E; --corteza-2: #874B27; --manteca: #F2B33D;
+  --harina: #FBF4E9; --masa: #F3E3C7; --pizarra: #2E2A27; --tiza: #F4F0E8;
+  --texto: #2F2118; --texto-2: #6A5444; --oro: #C9A464;
+  --fuente-marca: "Caprasimo", Georgia, serif;
+  --fuente-fina: "Fraunces", Georgia, serif;
+  --fuente-texto: "Rubik", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--harina); color: var(--texto); font-family: var(--fuente-texto); font-size: 1rem; line-height: 1.55; }
+a { color: var(--corteza); text-underline-offset: 3px; }
+h1, h2, h3 { font-family: var(--fuente-marca); font-weight: 400; line-height: 1.1; margin: 0 0 .4em; color: var(--corteza); }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.1rem); }
+p { margin: 0 0 .8em; max-width: 70ch; }
+:focus-visible { outline: 3px solid var(--manteca); outline-offset: 3px; }
+.saltar { position: absolute; left: 1rem; top: -4rem; background: var(--corteza); color: #fff; padding: .6rem 1rem; z-index: 100; }
+.saltar:focus { top: 1rem; }
+.contenedor { width: min(100% - 2rem, 75rem); margin-inline: auto; }
+.boton { display: inline-flex; align-items: center; justify-content: center; gap: .45rem; min-height: 2.6rem; padding: .5rem 1.1rem; border-radius: 9px; font: inherit; font-weight: 700; font-size: .95rem; text-decoration: none; cursor: pointer; border: 0; }
+.boton--principal { background: var(--corteza); color: #fff; }
+.boton--principal:hover { background: var(--corteza-2); }
+.seccion { padding-block: clamp(2rem, 5vw, 3rem); }
+.seccion__cabeza { text-align: center; margin-bottom: 1.4rem; }
+.seccion__cabeza p { color: var(--texto-2); margin: 0 auto; }
+
+/* ===== Portada ===== */
+.portada { position: relative; overflow: hidden; isolation: isolate; display: grid; align-items: center; min-height: min(calc(100vh - 3rem), 46rem); padding-block: 2.5rem 4.5rem; }
+.bucle { position: absolute; inset: 0; z-index: -2; pointer-events: none; }
+.bucle span { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; animation: bucle 24s infinite; filter: sepia(.25) saturate(.9); }
+.bucle span:nth-child(1) { background-image: url("../img/fondo-pan-canasta.webp"); }
+.bucle span:nth-child(2) { background-image: url("../img/fondo-masas.webp"); animation-delay: 8s; }
+.bucle span:nth-child(3) { background-image: url("../img/felipes.webp"); animation-delay: 16s; }
+@keyframes bucle { 0% { opacity: 0; transform: scale(1.04); } 6%, 33% { opacity: .55; } 40%, 100% { opacity: 0; transform: scale(1); } }
+.portada::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(100deg, rgba(251,244,233,.85) 0%, rgba(251,244,233,.55) 50%, rgba(251,244,233,.1) 100%); }
+.portada__fila { display: grid; grid-template-columns: 1.15fr 1fr; gap: 3rem; align-items: center; }
+.portada__fila > * { min-width: 0; }
+.portada__antetitulo { font-weight: 500; letter-spacing: .14em; text-transform: uppercase; font-size: clamp(.75rem, .9vw, .9rem); color: var(--texto-2); margin-bottom: .4rem; }
+.portada h1 { font-size: clamp(2.8rem, 6.5vw, 6.2rem); line-height: .95; margin-bottom: .3em; }
+.portada__sub { font-weight: 500; font-size: clamp(1.1rem, 1.6vw, 1.5rem); line-height: 1.4; max-width: 30ch; margin: 0; }
+.entra { animation: entra .7s ease-out both; }
+.entra--2 { animation-delay: .12s; } .entra--3 { animation-delay: .24s; } .entra--4 { animation-delay: .36s; }
+@keyframes entra { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+/* ===== Carruseles (vitrina de la portada y anuncios) ===== */
+.vitrina-col { position: relative; display: flex; justify-content: center; }
+.vitrina-col .boton--pizarra { position: absolute; top: calc(100% + 1rem); left: 50%; transform: translateX(-50%); white-space: nowrap; }
+.vitrina { position: relative; width: 100%; max-width: 27rem; background: #fff; border-radius: 14px; padding: .7rem .7rem .8rem; box-shadow: 0 16px 36px rgba(47,33,24,.2); }
+.vitrina__pista { overflow: hidden; border-radius: 10px; }
+.vitrina__fila { display: flex; transition: transform .6s cubic-bezier(.4,.1,.2,1); touch-action: pan-y; }
+.vitrina__fila > * { flex: 0 0 100%; min-width: 0; }
+.producto { margin: 0; }
+.producto img { display: block; width: 100%; aspect-ratio: 16 / 11; object-fit: cover; border-radius: 10px; background: var(--masa); }
+.producto figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: .8rem; padding: .6rem .2rem 0; }
+.producto__nombre { font-family: var(--fuente-fina); font-size: 1.15rem; }
+.producto__precio { font-family: var(--fuente-fina); font-weight: 600; font-size: 1.1rem; color: var(--corteza); white-space: nowrap; }
+.vitrina img { user-select: none; -webkit-user-drag: none; pointer-events: none; }
+.flecha { position: absolute; top: 40%; transform: translateY(-50%); width: 2.2rem; height: 2.2rem; border-radius: 50%; border: 0; cursor: pointer; background: rgba(255,255,255,.92); color: var(--corteza); font-size: 1.1rem; box-shadow: 0 3px 10px rgba(0,0,0,.18); display: grid; place-items: center; }
+.flecha--izq { left: 1.1rem; } .flecha--der { right: 1.1rem; }
+.puntos { display: flex; justify-content: center; gap: .4rem; margin-top: .6rem; }
+.puntos button { width: .5rem; height: .5rem; padding: 0; border-radius: 50%; border: 0; background: var(--masa); cursor: pointer; }
+.puntos button[aria-current="true"] { background: var(--corteza); width: 1.2rem; border-radius: 999px; }
+.boton--pizarra { background: var(--pizarra); color: var(--tiza); box-shadow: inset 0 0 0 1px rgba(201,164,100,.6); }
+.boton--pizarra:hover { background: #3c3733; }
+
+.vitrina--anuncios { max-width: none; }
+.vitrina--anuncios .flecha { top: 50%; }
+.anuncio { display: grid; grid-template-columns: 2fr 3fr; align-items: stretch; }
+.anuncio img { display: block; width: 100%; height: 16rem; object-fit: cover; border-radius: 10px; background: var(--masa); }
+.anuncio__texto { padding: .6rem 1.2rem .4rem 1.4rem; display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.anuncio__etiqueta { font-size: .66rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--corteza); background: var(--masa); padding: .2rem .6rem; border-radius: 999px; margin-bottom: .6rem; }
+.anuncio h3 { font-family: var(--fuente-fina); font-weight: 600; font-size: 1.35rem; color: var(--texto); margin-bottom: .25em; }
+.anuncio p { color: var(--texto-2); font-size: .95rem; margin-bottom: .6rem; }
+.anuncio__pie { margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .6rem; width: 100%; }
+.anuncio__precio { font-family: var(--fuente-fina); font-weight: 600; font-size: 1.2rem; color: var(--corteza); }
+.anuncio__precio small { font-family: var(--fuente-texto); font-weight: 400; font-size: .75rem; color: var(--texto-2); margin-right: .25rem; }
+.aviso48 { text-align: center; margin: .8rem 0 0; font-size: .9rem; color: var(--texto-2); }
+
+/* ===== Cadetería y oficio ===== */
+.franja { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; background: #fff; border-radius: 12px; padding: .8rem 1.1rem; margin-top: 1.4rem; }
+.franja svg { width: 2rem; height: 2rem; color: var(--corteza); flex: none; }
+.franja strong { font-family: var(--fuente-fina); font-size: 1.05rem; }
+.franja span { color: var(--texto-2); font-size: .92rem; }
+/* Bloque de marca: así trabajamos */
+.oficio { position: relative; background: var(--pizarra); color: rgba(244,240,232,.88); border-radius: 12px; padding: 1.8rem 1.6rem 1.4rem; margin-top: .8rem; text-align: center; }
+.oficio::before { content: ""; position: absolute; inset: 8px; border: 1px solid rgba(201,164,100,.45); border-radius: 7px; pointer-events: none; }
+.oficio h3 { font-size: clamp(1.4rem, 3vw, 1.75rem); color: var(--manteca); margin-bottom: .2em; }
+.oficio__intro { font-family: var(--fuente-fina); font-style: italic; font-size: 1.05rem; color: var(--tiza); margin: 0 auto 1.3rem; }
+.momentos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.momentos li { padding: 0 .4rem; }
+.momentos li + li { border-left: 1px solid rgba(201,164,100,.25); }
+.momentos svg { width: 2rem; height: 2rem; color: var(--oro); display: block; margin: 0 auto .4rem; }
+.momentos strong { display: block; font-family: var(--fuente-fina); font-weight: 600; font-size: 1.3rem; color: var(--tiza); line-height: 1.2; }
+.momentos span { display: block; font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--oro); margin: .15rem 0 .4rem; }
+.momentos p { margin: 0; font-size: .9rem; }
+.oficio__firma { font-family: var(--fuente-fina); font-style: italic; color: var(--oro); font-size: .95rem; margin: 1.3rem 0 0; }
+
+/* ===== Visitanos ===== */
+.visita { display: grid; grid-template-columns: 1fr 1.3fr; gap: .8rem; align-items: stretch; }
+.datos { display: grid; gap: .8rem; align-content: start; }
+.dato { display: flex; gap: .8rem; align-items: flex-start; background: #fff; border-radius: 12px; padding: .9rem 1.1rem; }
+.dato svg { width: 1.8rem; height: 1.8rem; color: var(--corteza); flex: none; }
+.dato h3 { font-family: var(--fuente-fina); font-weight: 600; font-size: 1rem; color: var(--texto); margin: 0 0 .15rem; }
+.dato p { margin: 0; color: var(--texto-2); font-size: .92rem; }
+.horarios { margin: 0; font-size: .92rem; }
+.horarios div { display: flex; justify-content: space-between; gap: 1rem; color: var(--texto-2); }
+.horarios dd { margin: 0; font-weight: 700; color: var(--texto); }
+.estado { display: inline-block; margin-top: .4rem; padding: .15rem .7rem; border-radius: 999px; font-weight: 700; font-size: .8rem; }
+.estado:empty { display: none; }
+.estado--abierto { background: #DCEFD3; color: #24561A; }
+.estado--cerrado { background: #F6DCD3; color: #7A2A14; }
+.mapa { display: block; width: 100%; height: 100%; min-height: 15rem; border: 0; border-radius: 12px; background: var(--masa); }
+
+.pie { background: var(--pizarra); color: var(--tiza); padding: 1.4rem 0; font-size: .82rem; }
+.pie p { opacity: .8; margin: 0 0 .4rem; }
+.pie a { color: var(--tiza); }
+
+/* ===== Ventanas: pizarra y aviso de WhatsApp ===== */
+.ventana { border: 0; padding: 0; background: transparent; max-width: 26rem; width: calc(100% - 2rem); }
+.ventana::backdrop, .demo::backdrop { background: rgba(46,42,39,.6); }
+.pizarra { position: relative; background: var(--pizarra); color: var(--tiza); border-radius: 6px; padding: 1.6rem 1.7rem 1.2rem; }
+.pizarra::before { content: ""; position: absolute; inset: 9px; border: 1px solid rgba(201,164,100,.55); pointer-events: none; }
+.pizarra__titulo { font-family: var(--fuente-fina); font-style: italic; font-size: 1.7rem; color: var(--tiza); text-align: center; margin: 0; }
+.pizarra__fecha { text-align: center; font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--oro); margin: 0 0 .6rem; }
+.pizarra h3 { font-family: var(--fuente-texto); font-weight: 500; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--oro); margin: .8rem 0 .2rem; }
+.precios { margin: 0; }
+.precios div { display: flex; align-items: baseline; gap: .5rem; padding: .25rem 0; }
+.precios dt { flex: 1; display: flex; gap: .5rem; font-family: var(--fuente-fina); }
+.precios dt::after { content: ""; flex: 1; border-bottom: 1px dotted rgba(244,240,232,.28); transform: translateY(-.3em); }
+.precios dd { margin: 0; font-family: var(--fuente-fina); font-weight: 600; white-space: nowrap; }
+.pizarra__nota { text-align: center; margin: .8rem 0 .6rem; font-size: .72rem; opacity: .6; }
+.pizarra__cerrar { position: relative; display: block; margin: 0 auto; background: transparent; color: var(--oro); border: 1px solid rgba(201,164,100,.6); border-radius: 999px; padding: .35rem 1.1rem; font: inherit; font-size: .85rem; cursor: pointer; }
+.demo { border: 0; border-radius: 14px; padding: 1.3rem; max-width: 24rem; width: calc(100% - 2rem); background: var(--harina); color: var(--texto); }
+.demo h3 { font-size: 1.3rem; }
+.demo__burbuja { background: #DCF8C6; border-radius: 12px 12px 12px 2px; padding: .7rem .9rem; margin: .8rem 0; font-size: .92rem; }
+
+@media (max-width: 760px) {
+  .portada__fila { grid-template-columns: 1fr; gap: 1.4rem; }
+  .anuncio { grid-template-columns: 1fr; }
+  .anuncio img { height: 10rem; }
+  .anuncio__texto { padding: .8rem .2rem .2rem; }
+  .vitrina--anuncios .flecha { top: 5.7rem; }
+  .visita { grid-template-columns: 1fr; }
+  .momentos { grid-template-columns: 1fr; gap: 1.1rem; }
+  .momentos li + li { border-left: 0; border-top: 1px solid rgba(201,164,100,.25); padding-top: 1.1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bucle span, .entra { animation: none; }
+  .bucle span:nth-child(1) { opacity: .55; }
+  .vitrina__fila { transition: none; }
+}
+
+.nota-365 { margin: .3rem 0 0 !important; font-size: .82rem !important; font-style: italic; }
+
+/* ===== Aviso de pedido: botones ===== */
+.demo__acciones { display: flex; justify-content: flex-end; gap: .6rem; }
+.boton--borde { background: transparent; color: var(--corteza); box-shadow: inset 0 0 0 2px var(--corteza); }
+.boton--borde:hover { background: var(--masa); }
+
+/* ===== Seguimiento del pedido (abajo a la derecha) ===== */
+.seguimiento { position: fixed; right: 1rem; bottom: 1rem; z-index: 50; width: min(21rem, calc(100% - 2rem)); background: #fff; border-radius: 14px; box-shadow: 0 18px 44px rgba(47,33,24,.3); padding: .8rem .9rem .9rem; animation: sube .4s ease-out; }
+.seguimiento[hidden] { display: none; }
+@keyframes sube { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+.seguimiento__cabeza { display: flex; justify-content: space-between; align-items: flex-start; gap: .5rem; margin-bottom: .6rem; }
+.seguimiento__cabeza strong { display: block; font-family: var(--fuente-fina); font-size: 1.05rem; }
+.seguimiento__cabeza small { color: var(--texto-2); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+.seguimiento__cerrar { border: 0; background: var(--harina); width: 1.8rem; height: 1.8rem; border-radius: 50%; font-size: 1.1rem; line-height: 1; color: var(--texto); cursor: pointer; }
+.seguimiento__mapa { display: block; width: 100%; height: auto; border-radius: 10px; }
+.seguimiento__ruta { fill: none; stroke: rgba(107,58,30,.3); stroke-width: 3; stroke-dasharray: 5 5; }
+.seguimiento__recorrido { fill: none; stroke: var(--corteza); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.seguimiento__pasos { list-style: none; margin: .7rem 0 .4rem; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: .3rem; counter-reset: paso; }
+.seguimiento__pasos li { font-size: .68rem; text-align: center; color: var(--texto-2); padding-top: .55rem; border-top: 3px solid var(--masa); }
+.seguimiento__pasos li.hecho { border-color: var(--corteza); color: var(--texto); font-weight: 700; }
+.seguimiento__estado { margin: 0; font-size: .9rem; font-weight: 500; }
+
+/* ===== Barra superior fija: pedido por WhatsApp ===== */
+.barra-pedido { position: sticky; top: 0; z-index: 40; background: var(--corteza); color: var(--harina); box-shadow: 0 2px 10px rgba(47,33,24,.18); }
+.barra-pedido__fila { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3rem; }
+.barra-pedido__marca { font-family: var(--fuente-marca); color: var(--manteca); font-size: 1.15rem; text-decoration: none; }
+.barra-pedido__texto { display: flex; align-items: center; gap: .6rem; font-size: .92rem; font-weight: 500; }
+.barra-pedido__texto b { background: var(--manteca); color: var(--corteza); border-radius: 999px; padding: .1rem .55rem; font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; }
+.barra-pedido__boton { background: var(--harina); color: var(--corteza); border-radius: 999px; padding: .35rem 1rem; font-weight: 700; font-size: .88rem; text-decoration: none; white-space: nowrap; transition: background .15s; }
+.barra-pedido__boton:hover { background: var(--manteca); }
+@media (max-width: 760px) {
+  .barra-pedido__marca { display: none; }
+  .barra-pedido__texto { font-size: .82rem; }
+  .barra-pedido__texto span { display: none; }
+  .portada { min-height: 0; padding-block: 1.8rem 4.5rem; }
+}
+
+/* ===== Seguimiento ampliado ===== */
+.seguimiento__botones { display: flex; gap: .4rem; }
+.seguimiento__ampliar { border: 0; background: var(--harina); width: 1.8rem; height: 1.8rem; border-radius: 50%; color: var(--texto); cursor: pointer; display: grid; place-items: center; }
+.seguimiento__ampliar svg { width: 1rem; height: 1rem; }
+.seguimiento__ampliar .icono-reducir { display: none; }
+.seguimiento.ampliado .icono-ampliar { display: none; }
+.seguimiento.ampliado .icono-reducir { display: block; }
+.seguimiento.ampliado { right: 50%; bottom: 50%; transform: translate(50%, 50%); width: min(44rem, calc(100% - 2rem)); padding: 1.1rem 1.3rem 1.2rem; animation: none; }
+.seguimiento.ampliado .seguimiento__pasos li { font-size: .82rem; }
+.seguimiento.ampliado .seguimiento__estado { font-size: 1.05rem; }
+.velo-seguimiento { position: fixed; inset: 0; z-index: 49; background: rgba(46,42,39,.5); }
+.velo-seguimiento[hidden] { display: none; }
+
+/* ===== Portada: estilo artesanal elegante ===== */
+.portada h1 { font-family: var(--fuente-fina); font-weight: 600; letter-spacing: -.02em; font-size: clamp(3.2rem, 7.5vw, 7rem); }
+.portada h1 em { font-style: italic; font-weight: 400; color: var(--corteza-2); }
+.portada__sub { font-family: var(--fuente-fina); font-style: italic; font-weight: 400; font-size: clamp(1.2rem, 1.8vw, 1.7rem); color: var(--texto); }
+.portada__antetitulo { color: var(--corteza-2); }
