@@ -8,6 +8,8 @@ Landing de una panadería de barrio ficticia en Cordón, Montevideo, que lleva a
 
 > Proyecto de demostración para mi portafolio. El negocio y sus datos de contacto son ficticios.
 
+**Proyecto relacionado:** [Reporte de ventas automático](https://github.com/fabricioruy-Rdig/reportes-dona-ema), un programa en Python que toma las ventas de la caja de Doña Ema y genera un Excel con gráficos y un resumen en PDF.
+
 ## Qué tiene
 
 - **Vitrina de productos** en la portada: carrusel que pasa solo, con flechas, puntos, teclado y deslizar con el dedo. Se queda quieto cuando el usuario lo toca, para mirar con calma.
